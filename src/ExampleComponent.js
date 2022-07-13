@@ -5,13 +5,14 @@ import find from 'lodash/find'
 import filter from 'lodash/filter'
 import { HotTable, HotColumn } from "@handsontable/react";
 import "handsontable/dist/handsontable.min.css";
-import { registerPlugin, AutoColumnSize, Autofill, ColumnSummary, ColumnSorting } from 'handsontable/plugins';
+import { registerPlugin, AutoColumnSize, Autofill, ColumnSummary, ColumnSorting, ManualColumnFreeze } from 'handsontable/plugins';
 import { HyperFormula } from 'hyperformula';
 import { applyGrand, applyRow, applySub, changesToData, dataToRows } from './helpers';
 registerPlugin(AutoColumnSize);
 registerPlugin(Autofill);
 registerPlugin(ColumnSummary);
-registerPlugin(ColumnSorting );
+registerPlugin(ColumnSorting);
+registerPlugin(ManualColumnFreeze);
 
     
 
@@ -111,6 +112,8 @@ const ExampleSpreadsheet = ({ triggerQuery, model, modelUpdate }) => {
                 autoInsertRow: false,
                 autoInsertColumn: false
             }}
+            manualColumnFreeze={(model.fixedColumnsStart && Number(model.fixedColumnsStart)>0)?true:false}
+            fixedColumnsLeft={(model.fixedColumnsStart && Number(model.fixedColumnsStart)>0)?model.fixedColumnsStart:0}
             cells={columnSummaryStyle}
             afterChange={afterChange}
             allowInsertRow={false}

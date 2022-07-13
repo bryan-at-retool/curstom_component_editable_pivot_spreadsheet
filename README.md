@@ -15,3 +15,35 @@ After starting the webpack dev server with `yarn dev` and the example dev server
 <script type="text/javascript" src="http://localhost:8080/index.js" />
 ```
 
+### Example Retool Model
+
+```
+{
+  data: {{ formatDataAsArray(query6.data) }},
+  updated_data: [],
+  fields: ['project','lob','work_type','amount', 'pr_code'],
+  labels: ['Project', 'LOB', 'Work Type','Amount', 'PR Code'],
+  groups: [
+    'project', 'lob'
+  ],
+  pivot: 'work_type',
+  value: 'amount',
+  id: 'pr_code',
+  totals: {
+    row_total: false,
+    sub_total: false,
+    grand_total: false,
+  },
+  columnSorting: true,
+  fixedColumnsStart: 1
+}
+```
+
+Required Model Keys
+- data
+- fields
+- labels
+- groups
+- pivot
+- value
+- id
